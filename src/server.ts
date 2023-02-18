@@ -3,14 +3,17 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import { UserRouter } from './router/user.router';
+import { ConfigServer } from './config/config';
 
-class ServerBootstrap{
+class ServerBootstrap extends ConfigServer{
 
     public app: express.Application = express();
     
-    private port: number = 8000;
+    private port: number = this.getNumberEnv('PORT');
 
     constructor(){
+
+        super();
 
         // middelwares
         this.app.use( express.json() );
