@@ -1,8 +1,13 @@
 import * as dotenv from 'dotenv';
 import { DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { UserEntity } from '../entities/user.entity';
+import { UserEntity } from '../user/entities/user.entity';
 // import * as fs from 'fs';
+import { CustomerEntity } from '../customer/entities/customer.entity';
+import { ProductEntity } from '../products/entities/product.entity';
+import { PurchaseEntity } from '../purchase/entities/purchase.entity';
+import { PurchaseProductsEntity } from '../custom/entities/purchases-products.entity';
+import { CategoryEntity } from '../category/entities/category.entity';
 
 export abstract class ConfigServer{
 
@@ -61,7 +66,7 @@ export abstract class ConfigServer{
             password: this.getEnviroment('DB_PASSWORD'),
             // Leer todos los archivos archivos con extencion js y ts que tengan el sufijo '.entity'
             // entities: [ __dirname + "/../**/*.entity{.ts,.js}"], 
-            entities: [ UserEntity ], 
+            entities: [ UserEntity, CustomerEntity, ProductEntity, PurchaseEntity, PurchaseProductsEntity, CategoryEntity ], 
             migrations: [ __dirname + "/../../migrations/*{.ts,.js}"],
             synchronize: true,
             logging: false,
